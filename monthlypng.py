@@ -34,7 +34,7 @@ for daystr in files:
 			avg = 0
 			mcount = 0
 
-			csvread = csv.reader(file, delimiter=';')
+			csvread = csv.reader(file, delimiter=',')
 			for row in csvread:
 				avg += float(row[1])
 				mcount += 1

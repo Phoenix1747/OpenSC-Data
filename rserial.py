@@ -18,7 +18,7 @@ while True:
 		data = float(ser_bytes.decode("utf-8"))
 
 		with open(filename,"a",newline="") as file:
-			writer = csv.writer(file, delimiter=";")
+			writer = csv.writer(file, delimiter=",")
 			writer.writerow([timestr,data])
 
 		os.system("python3 dailypng.py &")

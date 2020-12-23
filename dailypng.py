@@ -17,7 +17,7 @@ x = []
 y = []
 
 with open(filename,newline="") as file:
-	csvread = csv.reader(file, delimiter=';')
+	csvread = csv.reader(file, delimiter=',')
 	for row in csvread:
 		dstring = datestr + row[0]
 		x.append(datetime.strptime(dstring,"%Y%m%d%H%M"))
