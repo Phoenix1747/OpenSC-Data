@@ -8,11 +8,13 @@ import os
 ser = serial.Serial("/dev/ttyACM0", 2000000)
 ser.flushInput()
 
+fullpath = os.path.dirname(os.path.abspath(__file__)) + "/"
+
 while True:
 	#try:
 		ser_bytes = ser.readline()
 
-		filename = "data/" + time.strftime('%Y%m%d',time.localtime()) + ".csv"
+		filename = fullpath + "data/" + time.strftime('%Y%m%d',time.localtime()) + ".csv"
 		timestr = time.strftime('%H%M',time.localtime())
 
 		data = float(ser_bytes.decode("utf-8"))
@@ -21,7 +23,7 @@ while True:
 			writer = csv.writer(file, delimiter=",")
 			writer.writerow([timestr,data])
 
-		os.system("python3 dailypng.py &")
-		os.system("python3 monthlypng.py &")
+		os.system("python3 " + fullpath + "dailypng.py &")
+		os.system("python3 " + fullpath +  "monthlypng.py &")
 	#except:
 	#	continue
