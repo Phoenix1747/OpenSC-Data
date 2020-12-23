@@ -6,12 +6,15 @@
 import matplotlib.pyplot as plt
 import time
 import csv
-from datetime import datetime
-from datetime import date
+from datetime import datetime, date
+#from datetime import date
 import calendar
 import matplotlib.dates as mdates
+import os
 
 files = []
+
+fullpath = os.path.dirname(os.path.abspath(__file__)) + "/"
 
 year = datetime.now().year
 month = datetime.now().month
@@ -21,14 +24,14 @@ days = [date(year, month, day) for day in range(1, num_days+1)]
 for day in days:
 	files.append(day.strftime("%Y%m%d"))
 
-plotfile = "docs/images/monthly.png" #str(year) + str(month) + ".png"
+plotfile = fullpath + "docs/images/monthly.png" #str(year) + str(month) + ".png"
 
 x = []
 y = []
 count = 0
 
 for daystr in files:
-	filename = "data/" + daystr + ".csv"
+	filename = fullpath + "data/" + daystr + ".csv"
 	try:
 		with open(filename,newline="") as file:
 			avg = 0

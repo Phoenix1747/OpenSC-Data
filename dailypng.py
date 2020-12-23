@@ -8,10 +8,13 @@ import time
 import csv
 from datetime import datetime
 import matplotlib.dates as mdates
+import os
+
+fullpath = os.path.dirname(os.path.abspath(__file__)) + "/"
 
 datestr = F"{time.strftime('%Y%m%d',time.localtime())}"
-filename = "data/" + datestr + ".csv"
-plotfile = "docs/images/daily.png"
+filename = fullpath + "data/" + datestr + ".csv"
+plotfile = fullpath + "docs/images/daily.png"
 
 x = []
 y = []
