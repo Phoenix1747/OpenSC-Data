@@ -10,6 +10,8 @@ ser.flushInput()
 
 fullpath = os.path.dirname(os.path.abspath(__file__)) + "/"
 
+indexfile = fullpath + "docs/index.html"
+
 while True:
 	#try:
 		ser_bytes = ser.readline()
@@ -25,5 +27,9 @@ while True:
 
 		os.system("python3 " + fullpath + "dailypng.py &")
 		os.system("python3 " + fullpath +  "monthlypng.py &")
+
+		with open(indexfile+".orig","r") as file:
+			content = file.read()
+			content.replace("$current", data)
 	#except:
 	#	continue
