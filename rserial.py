@@ -9,7 +9,7 @@ ser = serial.Serial("/dev/ttyACM0", 2000000)
 ser.flushInput()
 
 while True:
-	try:
+	#try:
 		ser_bytes = ser.readline()
 
 		filename = "data/" + time.strftime('%Y%m%d',time.localtime()) + ".csv"
@@ -23,6 +23,5 @@ while True:
 
 		os.system("python3 dailypng.py &")
 		os.system("python3 monthlypng.py &")
-	except:
-		continue
-
+	#except:
+	#	continue
