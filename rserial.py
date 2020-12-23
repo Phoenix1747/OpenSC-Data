@@ -28,8 +28,10 @@ while True:
 		os.system("python3 " + fullpath + "dailypng.py &")
 		os.system("python3 " + fullpath +  "monthlypng.py &")
 
-		with open(indexfile+".orig","r") as file:
+		with open(indexfile + ".orig", "r") as file:
 			content = file.read()
 			content.replace("$current", data)
+			with open(indexfile, "w") as f:
+				f.write(content)
 	#except:
 	#	continue
