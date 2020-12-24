@@ -32,7 +32,10 @@ while True:
 		pnggen.dailypng() #generate pngs for webpage
 		pnggen.monthlypng()
 
-		indexrepl = {"$current" : str(data)} #holds all values to be replaced in web
+		indexrepl = {
+			"$current" : str(data),
+			"$lastup" : time.strftime("%Y-%m-%d, %H:%M",time.localtime())
+			} #holds all values to be replaced in web
 
 		with open(indexfile + ".orig", "r") as file:
 			content = file.read() #read whole file to string
