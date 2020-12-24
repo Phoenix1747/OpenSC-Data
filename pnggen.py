@@ -38,13 +38,14 @@ def dailypng():
         plt.xlabel("Time (HH:MM)")
         plt.ylabel("Avg. counts per second")
         plt.grid()
-        plt.ylim(min(y) - 5,max(y) + 2)
+        plt.ylim(min(y) - 3,max(y) + 3)
 
         date_format = mdates.DateFormatter("%H:%M")
         plt.gca().xaxis.set_major_formatter(date_format)
         plt.gcf().autofmt_xdate()
 
         plt.savefig(plotfile)
+        plt.close() #get rid of any old plot
 
 def monthlypng():
 	files = []
@@ -94,10 +95,11 @@ def monthlypng():
 	plt.xlabel("Day Of Month")
 	plt.ylabel("Avg. counts per second")
 	plt.grid()
-	plt.ylim(min(y) - 5, max(y) + 5)
+	plt.ylim(min(y) - 3, max(y) + 3)
 
 	date_format = mdates.DateFormatter("%d")
 	plt.gca().xaxis.set_major_formatter(date_format)
 	plt.gcf().autofmt_xdate()
 
 	plt.savefig(plotfile)
+	plt.close() #get rid of any old plot
