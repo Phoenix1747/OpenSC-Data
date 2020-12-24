@@ -1,9 +1,13 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+##
+## Regularly gets the serial output value of the OpenSC, saves data and does other stuff
+##
 
 import serial
 import time
 import csv
 import os
+import pnggen #must be same directory!
 
 ser = serial.Serial("/dev/ttyACM0", 2000000)
 ser.flushInput()
@@ -25,13 +29,16 @@ while True:
 			writer = csv.writer(file, delimiter=",")
 			writer.writerow([timestr,data])
 
-		os.system("python3 " + fullpath + "dailypng.py &")
-		os.system("python3 " + fullpath +  "monthlypng.py &")
+		pnggen.dailypng() #generate pngs for webpage
+		pnggen.monthlypng()
+
+		indexrepl = {"$current" : str(data)} #holds all values to be replaced in web
 
 		with open(indexfile + ".orig", "r") as file:
-			content = file.read()
-			content.replace("$current", data)
-			with open(indexfile, "w") as f:
+			content = file.read() #read whole file to string
+			for key in indexrepl: #replace all values
+				content = content.replace(key, indexrepl[key])
+			with open(indexfile, "w") as f: #save file with new values
 				f.write(content)
 	#except:
 	#	continue
