@@ -39,8 +39,8 @@
 <div class="main">
 
 	<h1><u>OpenSC Data Webarchive</u></h1>
-	<b>Long-term measurements done with the <a href="//github.com/Phoenix1747/OpenSC">Open Scintillation Counter</a>.</b>
-	<b>Find the data on Github: <a href="//github.com/Phoenix1747/OpenSC-Data">Phoenix1747/OpenSC-Data</a>!</b>
+	<p><b>Long-term measurements done with the <a href="//github.com/Phoenix1747/OpenSC">Open Scintillation Counter</a>.</b></p>
+	<p><b>Find the data on Github: <a href="//github.com/Phoenix1747/OpenSC-Data">Phoenix1747/OpenSC-Data</a>!</b></p>
 	<p><b>Location:</b> Vienna, Austria -- <b>Time zone:</b> Local time!</p>
 	
 	<br>
