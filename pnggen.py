@@ -11,12 +11,29 @@ import calendar
 import matplotlib.dates as mdates
 import os
 
-def dailypng():
-        fullpath = os.path.dirname(os.path.abspath(__file__)) + "/"
+fullpath = os.path.dirname(os.path.abspath(__file__)) + "/"
 
+def doplot(x,y,title,tolu,date_formatter,xlabel,path):
+	plotfile = fullpath + path
+
+	plt.plot_date(x,y, linestyle="solid", linewidth=1.1, marker=",", color="orange")
+
+	plt.title("Last update: " + tolu, fontsize=9, loc="center")
+	plt.suptitle(title, ha="center")
+	plt.xlabel(xlabel)
+	plt.ylabel("Avg. counts per second")
+	plt.grid()
+	plt.ylim(min(y) - 3,max(y) + 3)
+
+	plt.gca().xaxis.set_major_formatter(date_format)
+	plt.gcf().autofmt_xdate()
+
+	plt.savefig(plotfile)
+	plt.close()
+
+def dailypng():
         datestr = F"{time.strftime('%Y%m%d',time.localtime())}"
         filename = fullpath + "data/" + datestr + ".csv"
-        plotfile = fullpath + "docs/images/daily.png"
 
         x = []
         y = []
@@ -31,26 +48,10 @@ def dailypng():
         today = x[len(x)-1].strftime("%Y-%m-%d")
         tolu = x[len(x)-1].strftime("%H:%M") #time of last update
 
-        plt.plot_date(x,y, linestyle="solid", linewidth=1.1, marker=",", color="orange")
-
-        plt.title("Last update: " + tolu, fontsize=9, loc="center")
-        plt.suptitle("Average cps across the day (" + today + ")", ha="center")
-        plt.xlabel("Time (HH:MM)")
-        plt.ylabel("Avg. counts per second")
-        plt.grid()
-        plt.ylim(min(y) - 3,max(y) + 3)
-
-        date_format = mdates.DateFormatter("%H:%M")
-        plt.gca().xaxis.set_major_formatter(date_format)
-        plt.gcf().autofmt_xdate()
-
-        plt.savefig(plotfile)
-        plt.close() #get rid of any old plot
+        doplot(x,y,"Average cps across the day (" + today + ")",tolu,mdates.DateFormatter("%H:%M"),"Time (HH:MM)","docs/images/daily.png")
 
 def monthlypng():
 	files = []
-
-	fullpath = os.path.dirname(os.path.abspath(__file__)) + "/"
 
 	year = datetime.now().year
 	month = datetime.now().month
@@ -59,8 +60,6 @@ def monthlypng():
 
 	for day in days:
 		files.append(day.strftime("%Y%m%d"))
-
-	plotfile = fullpath + "docs/images/monthly.png"
 
 	x = []
 	y = []
@@ -88,18 +87,4 @@ def monthlypng():
 	tolu = time.strftime('%Y-%m-%d',time.localtime()) #time of last update
 	substring = "Daily average cps month of " + calendar.month_name[month] + " " + str(year)
 
-	plt.plot_date(x,y, linestyle="solid", linewidth=1.1, marker=",", color="orange")
-
-	plt.title("Last update: " + tolu, fontsize=9, loc="center")
-	plt.suptitle(substring, ha="center")
-	plt.xlabel("Day Of Month")
-	plt.ylabel("Avg. counts per second")
-	plt.grid()
-	plt.ylim(min(y) - 3, max(y) + 3)
-
-	date_format = mdates.DateFormatter("%d")
-	plt.gca().xaxis.set_major_formatter(date_format)
-	plt.gcf().autofmt_xdate()
-
-	plt.savefig(plotfile)
-	plt.close() #get rid of any old plot
+	doplot(x,y,substring,tolu,mdates.DateFormatter("%d"),"Day Of Month","docs/images/monthly.png")
