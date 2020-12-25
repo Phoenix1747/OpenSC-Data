@@ -13,7 +13,7 @@ import os
 
 fullpath = os.path.dirname(os.path.abspath(__file__)) + "/"
 
-def doplot(x,y,title,tolu,date_formatter,xlabel,path):
+def doplot(x,y,title,tolu,date_format,xlabel,path):
 	plotfile = fullpath + path
 
 	plt.plot_date(x,y, linestyle="solid", linewidth=1.1, marker=",", color="orange")
