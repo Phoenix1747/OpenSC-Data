@@ -1,5 +1,4 @@
-# OpenSC-Data
-## OpenSC Data Webarchive
+# OpenSC-Data Webarchive
 
 Long-term measurements done with the [Open Scintillation Counter](https://github.com/Phoenix1747/OpenSC) to test the stability and reliability of the sensor among other things.
 
