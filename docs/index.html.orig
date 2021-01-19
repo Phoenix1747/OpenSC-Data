@@ -28,7 +28,7 @@
 			height: auto;
 			margin-right: 15px;
 			border: 2px solid #331b00;
-			border-radius: 5px;
+			border-radius: 2px;
 		}
 		@media screen and (max-width:900px){.main{margin:auto;}}
 	</style>
